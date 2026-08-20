@@ -100,28 +100,6 @@ construction, data center operators, pure-play manufacturers, and DTC consumer b
 pytest
 ```
 
-## OpenAI 429 Errors
-
-If you see `HTTP/1.1 429 Too Many Requests`, the app reached an OpenAI rate, billing, quota, or
-usage limit while classifying articles.
-
-If the stored error says `type: insufficient_quota`, changing models will not fix it by itself.
-Check the API project's billing, credits, and usage/spend limits in the OpenAI dashboard.
-
-If the stored error says `rate_limit_exceeded`, the app is sending too many requests or tokens in a
-short period of time. This often happens during the first run because RSS feeds can contain a
-backlog of articles.
-
-When a 429 happens, the app records the current article as retryable and stops the current poll
-cycle. On the next `watch` interval or `run-once`, it will retry later.
-
-To reduce 429s:
-
-- Lower `max_articles_per_run`.
-- Increase `ai_request_delay_seconds`.
-- Use fewer or more targeted feeds while testing.
-- Check the project's OpenAI rate limits and billing/usage limits in the OpenAI dashboard.
-
 ## Notes
 
 - This is a feed-driven MVP. True internet-wide monitoring should use a paid news/search provider
