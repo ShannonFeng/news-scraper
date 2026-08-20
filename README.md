@@ -19,7 +19,6 @@ source .venv/bin/activate
 pip install -e ".[dev]"
 
 cp .env.example .env
-cp config.example.yaml config.yaml
 ```
 
 Fill in `.env`:
